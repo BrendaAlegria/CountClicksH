@@ -144,7 +144,7 @@ class _DatosState extends State<Datos> {
               //borde del imput
               border: const OutlineInputBorder(),
               //Texto de ayuda 
-              hintText: 'Contraseña',
+              hintText: 'Contraseñaaaa',
               suffixIcon: IconButton(
                 //ojito de la contttraseña
                  icon: const Icon(Icons.remove_red_eye_outlined),
