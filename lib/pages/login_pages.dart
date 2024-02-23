@@ -73,7 +73,12 @@ class _ContenidoState extends State<Contenido> {
               letterSpacing: 1.5,
             ),
           ),
+          SizedBox(
+            height:20,
+            width:double.infinity,
+          ),
           Datos(),
+          SizedBox(height: 5,),
         ],
       ),
     );
@@ -87,10 +92,16 @@ class Datos extends StatefulWidget {
 }
 
 class _DatosState extends State<Datos> {
+  bool showPass =true;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
+      decoration:BoxDecoration(
+        borderRadius:BorderRadius.circular(10),
+        color:Colors.white,
+      ),
       child:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -102,7 +113,7 @@ class _DatosState extends State<Datos> {
               fontSize: 20,
             ),
           ),
-          const SizedBox(height: 5,),
+          const SizedBox(height: 10,),
           //
           TextFormField(
             keyboardType: TextInputType.emailAddress,
@@ -111,7 +122,10 @@ class _DatosState extends State<Datos> {
               hintText: 'micorrero@micorreo.com'
             ),   
           ),
-          const SizedBox(height: 5,),
+          const SizedBox(
+            height:20,
+            width:double.infinity,
+          ),
           const Text(
             'Contraseña',
             style: TextStyle(
@@ -121,10 +135,10 @@ class _DatosState extends State<Datos> {
             ),
           ),
           //Espaciado
-          const SizedBox(height: 5,),
+          const SizedBox(height: 10,),
           TextFormField(
             //Pone la contraseña
-            obscureText: true,
+            obscureText: showPass,
             //Decoracion del widget
             decoration:  InputDecoration(
               //borde del imput
@@ -134,9 +148,174 @@ class _DatosState extends State<Datos> {
               suffixIcon: IconButton(
                 //ojito de la contttraseña
                  icon: const Icon(Icons.remove_red_eye_outlined),
-                 onPressed: () => {},
+                 onPressed: () => {
+                  setState(() {
+                    showPass == true? showPass = true :showPass = false;
+                  })
+                 },
                  )
             ),   
+          ),
+          const SizedBox(
+            height:20,
+            width:double.infinity,
+          ),
+          const Remember(),
+          const SizedBox(height: 30,),
+          const Botones(),
+          const SizedBox(height: 15,),
+          const Aviso(),
+
+        ],
+        
+      ),
+    );
+  }
+}
+
+
+class Remember extends StatefulWidget {
+  const Remember({super.key});
+
+  @override
+  State<Remember> createState() => _RememberState();
+}
+
+class _RememberState extends State<Remember> {
+  bool checked =false;
+  @override
+  Widget build(BuildContext context) {
+    return  Row(
+      children: [
+         Checkbox(
+          value: checked ,
+           onChanged:(value) => {
+            setState(()=>
+            //Verificacion del checked
+              checked== false? checked=true : checked =false 
+              ),
+          },
+        ),
+        const Text(
+          'Recordar Cuenta',
+          style:TextStyle(fontSize: 12,) ,
+          ),
+        const Spacer(),
+        TextButton(
+          onPressed: () =>{},
+          child: const Text(
+            'Olvido su Contraseña ?',
+          style:TextStyle(fontSize: 12,) ,
+          ),
+        ),
+
+      ],
+      
+    );
+  }
+}
+
+class Botones extends StatelessWidget {
+  const Botones({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children:[
+        SizedBox(
+          //ocupa todo el espacio donde se encuentra
+          width: double.infinity,
+          height: 50,
+          child:  ElevatedButton(
+            onPressed: () => {},
+                style: ButtonStyle(
+                  //color del boton y estilo 
+                  //usa propieda y un color 
+                  backgroundColor: MaterialStateProperty.all<Color>(const Color(0xff142047))
+                ),
+            child: const Text(
+              'Login',
+              style: TextStyle(
+                color: Colors.white
+                ,)
+                ),
+            ),
+            
+          ),
+          const SizedBox(
+            height:10,
+            width:double.infinity,
+          ),
+          const Text(
+            'O entra con ',
+            style:TextStyle(color:Colors.grey,)
+          ),
+          
+          const SizedBox(
+            height:15,
+            width:double.infinity,
+          ),
+
+          SizedBox(
+            width:double.infinity,
+            height:50,
+            child: OutlinedButton(
+              onPressed: () => {} ,
+              child: const Text(
+                'Google',
+                style: TextStyle(
+                  color:Color(0xff142047),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18
+                ),
+              ),
+            ),
+          ),
+
+          const SizedBox(
+            height:15,
+            width:double.infinity,
+          ),
+
+          SizedBox(
+            width:double.infinity,
+            height:50,
+            child: OutlinedButton(
+              onPressed: () => {} ,
+              child: const Text(
+                'Facebook',
+                style: TextStyle(
+                  color:Color(0xff142047),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18
+                ),
+              ),
+            ),
+          ),
+
+        //SizedBox(),
+        //Container()
+      ],
+    );
+  }
+}
+
+class Aviso extends StatelessWidget {
+  const Aviso({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center, // Centra los elementos verticalmente
+        children: [
+          TextButton(
+            onPressed: () => {},
+            child: const Text(
+              'Aviso de Privacidad',
+              style: TextStyle(fontSize: 15,),
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       ),
