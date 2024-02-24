@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+//ruta para la conexion con el archivo
+import 'package:counter_texth/pages/rememberPass.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -143,7 +145,7 @@ class _DatosState extends State<Datos> {
             decoration:  InputDecoration(
               //borde del imput
               border: const OutlineInputBorder(),
-              //Texto de ayuda 
+              //Texto de ayuda 1
               hintText: 'Contraseñaaaa',
               suffixIcon: IconButton(
                 //ojito de la contttraseña
@@ -182,35 +184,42 @@ class Remember extends StatefulWidget {
 }
 
 class _RememberState extends State<Remember> {
-  bool checked =false;
+  bool checked = false;
+
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
-         Checkbox(
-          value: checked ,
-           onChanged:(value) => {
-            setState(()=>
-            //Verificacion del checked
-              checked== false? checked=true : checked =false 
-              ),
+        Checkbox(
+          value: checked,
+          onChanged: (value) => {
+            setState(() =>
+                // Verificación del checked
+                checked == false ? checked = true : checked = false),
           },
         ),
         const Text(
           'Recordar Cuenta',
-          style:TextStyle(fontSize: 12,) ,
-          ),
+          style: TextStyle(fontSize: 12),
+        ),
         const Spacer(),
         TextButton(
-          onPressed: () =>{},
+          onPressed: () {
+            // nueva pantalla 
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                //manda a llamar la pantalla 
+                builder: (context) => rememberPassword(),
+              ),
+            );
+          },
           child: const Text(
             'Olvido su Contraseña ?',
-          style:TextStyle(fontSize: 12,) ,
+            style: TextStyle(fontSize: 12),
           ),
         ),
-
       ],
-      
     );
   }
 }
